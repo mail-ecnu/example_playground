@@ -25,7 +25,7 @@ class DockerAgentRunner(metaclass=abc.ABCMeta):
         app = Flask(self.__class__.__name__)
 
         @app.route("/action", methods=["POST"])
-        def action(): #pylint: disable=W0612
+        def action():  # pylint: disable=W0612
             '''handles an action over http'''
             data = request.get_json()
             observation = data.get("obs")
@@ -45,7 +45,7 @@ class DockerAgentRunner(metaclass=abc.ABCMeta):
             return jsonify({"action": action})
 
         @app.route("/init_agent", methods=["POST"])
-        def init_agent(): #pylint: disable=W0612
+        def init_agent():  # pylint: disable=W0612
             '''initiates agent over http'''
             data = request.get_json()
             id = data.get("id")
@@ -56,13 +56,13 @@ class DockerAgentRunner(metaclass=abc.ABCMeta):
             return jsonify(success=True)
 
         @app.route("/shutdown", methods=["POST"])
-        def shutdown(): #pylint: disable=W0612
+        def shutdown():  # pylint: disable=W0612
             '''Requests destruction of any created objects'''
             self.shutdown()
             return jsonify(success=True)
 
         @app.route("/episode_end", methods=["POST"])
-        def episode_end(): #pylint: disable=W0612
+        def episode_end():  # pylint: disable=W0612
             '''Info about end of a game'''
             data = request.get_json()
             reward = data.get("reward")
@@ -71,7 +71,7 @@ class DockerAgentRunner(metaclass=abc.ABCMeta):
             return jsonify(success=True)
 
         @app.route("/ping", methods=["GET"])
-        def ping(): #pylint: disable=W0612
+        def ping():  # pylint: disable=W0612
             '''Basic agent health check'''
             return jsonify(success=True)
 

@@ -2,6 +2,7 @@
 import pommerman
 from pommerman import agents
 
+
 def main():
     '''Simple function to bootstrap a game.
        
@@ -21,7 +22,7 @@ def main():
     env = pommerman.make('PommeFFACompetition-v0', agent_list)
 
     # Run the episodes just like OpenAI Gym
-    for i_episode in range(1):
+    for i_episode in range(5):
         state = env.reset()
         done = False
         while not done:

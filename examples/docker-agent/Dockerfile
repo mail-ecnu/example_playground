@@ -12,6 +12,7 @@ EXPOSE 10080
 ENV NAME Agent
 
 # Run app.py when the container launches
+ADD ./examples/docker-agent /agent
 WORKDIR /agent
 ENTRYPOINT ["python"]
 CMD ["run.py"]
