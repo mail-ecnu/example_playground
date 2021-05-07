@@ -261,6 +261,7 @@ class A2CNet(nn.Module):
 
 
 def naked_env(agent_list):
+    # No wooden walls and rigid walls
     env = gym.make('PommeFFACompetition-v0')
     env._num_items = 0
     env._num_wood = 0

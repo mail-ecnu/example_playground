@@ -1,7 +1,5 @@
 FROM python:3.6
 
-ADD ./examples/docker-agent /agent
-
 # @TODO to be replaced with `pip install pommerman`
 ADD . /pommerman
 RUN cd /pommerman && pip install .
@@ -15,4 +13,4 @@ ENV NAME Agent
 ADD ./examples/docker-agent /agent
 WORKDIR /agent
 ENTRYPOINT ["python"]
-CMD ["run.py"]
+CMD ["A2C_run.py"]
