@@ -63,7 +63,9 @@ class Net(nn.Module):
             nn.ReLU(),
             nn.Linear(512, 256),
             nn.ReLU(),
-            nn.Linear(256, 32),
+            nn.Linear(256,64),
+            nn.ReLU(),
+            nn.Linear(64, 32),
             nn.ReLU(),
             nn.Linear(32, 16),
             nn.ReLU(),
@@ -104,8 +106,8 @@ class DQN(nn.Module):
 
         self.policy_net = Net().to(self.device)
         self.target_net = Net().to(self.device)
-        if os.path.exists("model_2.pth"):
-            self.policy_net.load_state_dict(torch.load("model_2.pth"))
+        # if os.path.exists("model_2.pth"):
+        #     self.policy_net.load_state_dict(torch.load("model_2.pth"))
         self.target_net.load_state_dict(self.policy_net.state_dict())
         self.target_net.eval()
 
@@ -200,7 +202,8 @@ class DQNAgent(agents.BaseAgent):
         self.obs_fps.append(obs)
         obs = torch.cat(self.obs_fps[-4:])
         sample = random.random()
-        if sample > 1000.0 / (global_step + 0.1):
+
+        if sample + global_step/(global_step + 1000)<0.9:
             re_action = self.model.policy_net(obs).argmax().item()
             return re_action
         else:
